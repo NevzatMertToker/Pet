@@ -1,0 +1,19 @@
+{
+  "name": "@patipaket/shared",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web ve mobil uygulamanın ortak kullandığı tipler, fiyat hesaplama ve API istemcisi",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "vitest": "^5.1.0"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}

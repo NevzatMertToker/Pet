@@ -1,0 +1,10 @@
+{
+  "name": "patipaket",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Kedi, köpek ve kuş ürünleri için abonelikli e-ticaret: web sitesi, API ve iOS/Android uygulaması",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

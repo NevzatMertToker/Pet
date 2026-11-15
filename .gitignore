@@ -1,0 +1,29 @@
+# bağımlılıklar
+node_modules/
+
+# derleme çıktıları
+.next/
+out/
+dist/
+build/
+web-build/
+.expo/
+*.tsbuildinfo
+next-env.d.ts
+expo-env.d.ts
+
+# ortam dosyaları (örnekler depoda kalır)
+.env
+.env.*
+!.env.example
+
+# yerel (native) derleme klasörleri — Expo bunları üretir
+apps/mobile/ios/
+apps/mobile/android/
+
+# işletim sistemi / editör
+.DS_Store
+*.pem
+npm-debug.log*
+.vercel
+coverage/
