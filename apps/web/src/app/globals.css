@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand-50: #effaf5;
+  --color-brand-100: #d8f3e6;
+  --color-brand-200: #b4e6d0;
+  --color-brand-300: #82d2b4;
+  --color-brand-400: #4fb793;
+  --color-brand-500: #2c9b78;
+  --color-brand-600: #1e7d61;
+  --color-brand-700: #1a6450;
+  --color-brand-800: #185041;
+  --color-brand-900: #143f34;
+
+  --color-accent-50: #fff5ec;
+  --color-accent-100: #ffe7d1;
+  --color-accent-200: #ffcba3;
+  --color-accent-300: #ffa869;
+  --color-accent-400: #ff8a3d;
+  --color-accent-500: #f96d16;
+  --color-accent-600: #dd520c;
+  --color-accent-700: #b33d0c;
+
+  --color-cream: #fffaf2;
+  --color-sand: #f6efe3;
+  --color-ink: #16211e;
+
+  --shadow-soft: 0 1px 2px rgb(22 33 30 / 0.04), 0 10px 28px -12px rgb(22 33 30 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(22 33 30 / 0.05), 0 22px 44px -18px rgb(22 33 30 / 0.28);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-heading), ui-rounded, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  summary {
+    cursor: pointer;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-lg {
+    @apply px-7 py-3.5 text-base;
+  }
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-[13px];
+  }
+  .btn-primary {
+    @apply bg-brand-600 text-white shadow-sm hover:bg-brand-700 active:bg-brand-800;
+  }
+  .btn-accent {
+    @apply bg-accent-400 text-ink shadow-sm hover:bg-accent-300 active:bg-accent-500;
+  }
+  .btn-outline {
+    @apply border border-ink/15 bg-white text-ink hover:border-ink/30 hover:bg-sand/60;
+  }
+  .btn-ghost {
+    @apply text-ink/75 hover:bg-ink/5 hover:text-ink;
+  }
+  .btn-danger {
+    @apply border border-red-200 bg-white text-red-700 hover:border-red-300 hover:bg-red-50;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15 focus:outline-none;
+  }
+  .input-error {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-500/15;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink/80;
+  }
+
+  .card {
+    @apply rounded-3xl border border-ink/[0.07] bg-white shadow-soft;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .badge-brand {
+    @apply bg-brand-100 text-brand-800;
+  }
+  .badge-accent {
+    @apply bg-accent-100 text-accent-700;
+  }
+  .badge-muted {
+    @apply bg-ink/[0.06] text-ink/70;
+  }
+  .badge-danger {
+    @apply bg-red-100 text-red-700;
+  }
+  .badge-warn {
+    @apply bg-amber-100 text-amber-800;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold text-ink sm:text-3xl;
+  }
+
+  .link {
+    @apply font-medium text-brand-700 underline-offset-4 hover:underline;
+  }
+
+  .table-base {
+    @apply w-full text-left text-sm;
+  }
+  .table-base th {
+    @apply border-b border-ink/10 px-3 py-2.5 text-xs font-semibold tracking-wide text-ink/55 uppercase;
+  }
+  .table-base td {
+    @apply border-b border-ink/[0.06] px-3 py-3 align-top;
+  }
 }

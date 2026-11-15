@@ -226,6 +226,7 @@ export const SEED_PRODUCTS: SeedProduct[] = [
     price: 74990,
     stock: 65,
     suggestedIntervalWeeks: 4,
+    isFeatured: true,
   },
   {
     slug: "pati-sef-biftekli-yas-kopek-mamasi-6-li",
