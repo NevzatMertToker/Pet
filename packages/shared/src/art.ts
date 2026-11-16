@@ -134,10 +134,12 @@ export interface ProductArtInput {
 
 export function productArtSvg({ species, type, seed }: ProductArtInput): string {
   const p = paletteFor(species, seed);
+  // Aynı sayfada birden çok satır içi SVG olduğunda degrade kimlikleri çakışmasın.
+  const gradient = "pp-" + hash([species, type, seed].join("/")).toString(36);
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">`,
-    `<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.bg1}"/><stop offset="1" stop-color="${p.bg2}"/></linearGradient></defs>`,
-    `<rect width="400" height="400" fill="url(#bg)"/>`,
+    `<defs><linearGradient id="${gradient}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.bg1}"/><stop offset="1" stop-color="${p.bg2}"/></linearGradient></defs>`,
+    `<rect width="400" height="400" fill="url(#${gradient})"/>`,
     `<circle cx="336" cy="62" r="92" fill="#FFFFFF" opacity="0.38"/>`,
     `<circle cx="52" cy="352" r="64" fill="#FFFFFF" opacity="0.28"/>`,
     `<ellipse cx="200" cy="350" rx="116" ry="13" fill="${p.ink}" opacity="0.13"/>`,
@@ -150,10 +152,11 @@ export function productArtSvg({ species, type, seed }: ProductArtInput): string 
 /** Kategori kartları için büyük tür portresi. */
 export function speciesArtSvg(species: Species): string {
   const p = PALETTES[species][0];
+  const gradient = "pp-tur-" + species;
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">`,
-    `<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.bg1}"/><stop offset="1" stop-color="${p.bg2}"/></linearGradient></defs>`,
-    `<rect width="400" height="400" fill="url(#bg)"/>`,
+    `<defs><linearGradient id="${gradient}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${p.bg1}"/><stop offset="1" stop-color="${p.bg2}"/></linearGradient></defs>`,
+    `<rect width="400" height="400" fill="url(#${gradient})"/>`,
     `<circle cx="330" cy="70" r="110" fill="#FFFFFF" opacity="0.35"/>`,
     `<circle cx="60" cy="350" r="80" fill="#FFFFFF" opacity="0.25"/>`,
     `<circle cx="200" cy="205" r="128" fill="${p.label}"/>`,
