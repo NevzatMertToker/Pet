@@ -109,7 +109,10 @@ const attempts = new Map<string, { count: number; resetAt: number }>();
  * paylaşımlı bir depo (ör. Redis/Upstash) ile değiştirilmelidir.
  */
 export function rateLimit(request: Request, bucket: string, limit = 10, windowMs = 5 * 60_000): void {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  // İstemci adresi bilinmiyorsa (önünde vekil sunucu yoksa) herkes tek kovaya düşer ve
+  // birkaç denemeden sonra tüm kullanıcılar engellenirdi; bu durumda sınır uygulanmaz.
+  if (!ip) return;
   const key = bucket + ":" + ip;
   const now = Date.now();
   const entry = attempts.get(key);

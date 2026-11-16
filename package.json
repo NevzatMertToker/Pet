@@ -6,5 +6,22 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "npm run dev -w @patipaket/web",
+    "dev:web": "npm run dev -w @patipaket/web",
+    "dev:mobile": "npm run start -w @patipaket/mobile",
+    "build": "npm run build -w @patipaket/web",
+    "start": "npm run start -w @patipaket/web",
+    "db:migrate": "npm run db:migrate -w @patipaket/web",
+    "db:seed": "npm run db:seed -w @patipaket/web",
+    "db:generate": "npm run db:generate -w @patipaket/web",
+    "create-admin": "npm run create-admin -w @patipaket/web --",
+    "test": "npm run test -w @patipaket/shared && npm run test -w @patipaket/web",
+    "typecheck": "npm run typecheck -w @patipaket/shared && npm run typecheck -w @patipaket/web && npm run typecheck -w @patipaket/mobile",
+    "lint": "npm run lint -w @patipaket/web"
+  }
 }

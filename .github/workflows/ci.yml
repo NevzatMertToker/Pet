@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dogrula:
+    name: Tip denetimi, lint, testler, derleme
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: patipaket
+          POSTGRES_PASSWORD: patipaket
+          POSTGRES_DB: patipaket_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U patipaket -d patipaket_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
+    env:
+      TEST_DATABASE_URL: postgres://patipaket:patipaket@localhost:5432/patipaket_test
+      # Yalnızca derleme adımı için; derleme sırasında veritabanına bağlanılmaz.
+      DATABASE_URL: postgres://patipaket:patipaket@localhost:5432/patipaket_test
+      AUTH_SECRET: ci-icin-rastgele-olmayan-anahtar-0123456789abcdef
+      NEXT_TELEMETRY_DISABLED: "1"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tip denetimi (ortak paket, web, mobil)
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Testler (fiyatlama, sepet, sipariş ve abonelik servisleri)
+        run: npm test
+
+      - name: Web üretim derlemesi
+        run: npm run build
