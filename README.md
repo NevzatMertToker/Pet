@@ -209,7 +209,7 @@ Servis testleri gerçek PostgreSQL üzerinde çalışır (`patipaket_test`) ve �
 son ürün için yarışan iki sipariş, reddedilen kartta stokun geri verilmesi, aynı gün iki kez çalışan
 yenileme görevi, üç başarısız tahsilatta duraklatma, başka kullanıcının aboneliğine erişim.
 
-Her gönderimde GitHub Actions (`.github/workflows/ci.yml`) tip denetimi, lint, testler ve üretim derlemesini çalıştırır.
+GitHub Actions (`.github/workflows/ci.yml`), `main` dalına her gönderimde ve her PR'da tip denetimi, lint, testler ve üretim derlemesini çalıştırır.
 
 ## Yayına almadan önce
 
