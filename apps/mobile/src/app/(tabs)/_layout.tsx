@@ -30,9 +30,9 @@ export default function TabsLayout() {
         tabBarStyle: {
           backgroundColor: colors.white,
           borderTopColor: colors.line,
-          height: 62 + insets.bottom,
-          paddingTop: 7,
-          paddingBottom: insets.bottom + 7,
+          height: 64 + insets.bottom,
+          paddingTop: 4,
+          paddingBottom: insets.bottom + 4,
         },
         headerStyle: { backgroundColor: colors.cream },
         headerTitleStyle: { fontFamily: fonts.display, fontSize: 21, color: colors.ink },

@@ -1,9 +1,9 @@
+import { Baloo2_600SemiBold } from "@expo-google-fonts/baloo-2/600SemiBold";
+import { Baloo2_700Bold } from "@expo-google-fonts/baloo-2/700Bold";
 import { DMSans_400Regular } from "@expo-google-fonts/dm-sans/400Regular";
 import { DMSans_500Medium } from "@expo-google-fonts/dm-sans/500Medium";
 import { DMSans_600SemiBold } from "@expo-google-fonts/dm-sans/600SemiBold";
 import { DMSans_700Bold } from "@expo-google-fonts/dm-sans/700Bold";
-import { Fredoka_500Medium } from "@expo-google-fonts/fredoka/500Medium";
-import { Fredoka_600SemiBold } from "@expo-google-fonts/fredoka/600SemiBold";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -21,8 +21,8 @@ export default function RootLayout() {
     DMSans_500Medium,
     DMSans_600SemiBold,
     DMSans_700Bold,
-    Fredoka_500Medium,
-    Fredoka_600SemiBold,
+    Baloo2_600SemiBold,
+    Baloo2_700Bold,
   });
   const sessionReady = useAuth((state) => state.ready);
   const ready = (fontsLoaded || fontError !== null) && sessionReady;

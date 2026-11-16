@@ -30,10 +30,13 @@ export const colors = {
 export const spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 20, xxl: 28 } as const;
 export const radius = { sm: 10, md: 14, lg: 20, xl: 26, pill: 999 } as const;
 
-/** Yazı tipleri kök layout'ta yüklenir. */
+/**
+ * Yazı tipleri kök layout'ta yüklenir. Başlıklarda Baloo 2 kullanılır: yuvarlak ve
+ * sıcak bir karaktere sahiptir ve ş, ğ, İ gibi Türkçe harfleri eksiksiz çizer.
+ */
 export const fonts = {
-  display: "Fredoka_600SemiBold",
-  displayMedium: "Fredoka_500Medium",
+  display: "Baloo2_700Bold",
+  displayMedium: "Baloo2_600SemiBold",
   regular: "DMSans_400Regular",
   medium: "DMSans_500Medium",
   semibold: "DMSans_600SemiBold",

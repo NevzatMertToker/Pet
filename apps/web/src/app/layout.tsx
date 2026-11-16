@@ -1,13 +1,20 @@
 import { APP_NAME, APP_TAGLINE } from "@patipaket/shared";
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fredoka } from "next/font/google";
+import { Baloo_2, DM_Sans } from "next/font/google";
 import { CartHydrator } from "@/components/cart-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 // latin-ext: ğ, ş, ı, İ gibi Türkçe harfler için gerekli.
-const heading = Fredoka({ variable: "--font-heading", subsets: ["latin", "latin-ext"], display: "swap" });
+// Başlık yazı tipinin yalnızca kalın kesimleri yüklenir; böylece yarı kalın (600)
+// istenen başlıklar da mobil uygulamadaki gibi 700 ağırlıkla çizilir.
+const heading = Baloo_2({
+  variable: "--font-heading",
+  subsets: ["latin", "latin-ext"],
+  weight: ["700", "800"],
+  display: "swap",
+});
 const body = DM_Sans({ variable: "--font-body", subsets: ["latin", "latin-ext"], display: "swap" });
 
 export const metadata: Metadata = {
